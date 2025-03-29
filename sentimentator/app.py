@@ -75,7 +75,7 @@ def index():
         user_id = current_user._uid
         return render_template('index.html', score=get_score(user_id), username=get_username(user_id))
     else:
-        return redirect(url_for('login'))
+        return redirect('/sentimentator/login')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -85,13 +85,13 @@ def login():
     If user is already authenticated render index page
     """
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect('/sentimentator')
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(_user=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password...')
-            return redirect(url_for('login'))
+            return redirect('/sentimentator/login')
         login_user(user)
         return render_template('index.html', score=get_score(current_user._uid), username=get_username(current_user._uid))
     return render_template('login.html', title='SIGN IN', form=form)
@@ -100,7 +100,7 @@ def login():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))  # Redirect if already logged in
+        return redirect('/sentimentator')  # Redirect if already logged in
     
     form = RegistrationForm()
     if form.validate_on_submit():
@@ -117,7 +117,7 @@ def register():
         db.session.commit()
         
         flash('Registration successful! Please log in.', 'success')
-        return redirect(url_for('login'))
+        return redirect('/sentimentator/login')
     
     return render_template('register.html', title='REGISTER', form=form)
 
@@ -151,7 +151,7 @@ def annotate(lang):
         score = get_score(user_id)
         if sen is None:
             flash('There are no sentences for the selected language!')
-            return redirect(url_for('language', score=score, username=get_username(user_id)))
+            return redirect('/sentimentator/language', score=score, username=get_username(user_id)))
         else:
             username = get_username(user_id)
             if request.method == 'POST':
@@ -190,7 +190,7 @@ def test_annotate(lang):
         score = get_score(user_id)
         if sen is None:
             flash('There are no sentences for the selected language!')
-            return redirect(url_for('language', score=score, username=get_username(user_id)))
+            return redirect('/sentimentator/language', score=score, username=get_username(user_id)))
         else:
             username = get_username(user_id)
             if request.method == 'POST':
@@ -221,7 +221,7 @@ def stats():
 @app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('login'))
+    return redirect('/sentimentator/login')
 
 @app.route('/reset_sentences', methods=['GET'])
 @login_required
