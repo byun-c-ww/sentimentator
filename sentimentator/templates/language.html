@@ -43,14 +43,14 @@
     <p>Choose the language in which you would like to annotate sentences.</p>
     <div id="language">
       <div class="six columns">
-        <a class="button" href="/annotate/en">English</a>
-        <a class="button" href="/annotate/fi">suomi</a>
-        <a class="button" href="/annotate/sv">svenska</a>
+        <a class="button" href="/sentimentator/annotate/en">English</a>
+        <a class="button" href="/sentimentator/annotate/fi">suomi</a>
+        <a class="button" href="/sentimentator/annotate/sv">svenska</a>
       </div>
       <div class="six columns">
-        <a class="button" href="/annotate/it">italiano</a>
-        <a class="button" href="/annotate/ru">русский</a>
-        <a class="button" href="/annotate/fr">français</a>
+        <a class="button" href="/sentimentator/annotate/it">italiano</a>
+        <a class="button" href="/sentimentator/annotate/ru">русский</a>
+        <a class="button" href="/sentimentator/annotate/fr">français</a>
       </div>
     </div>
     {% with messages = get_flashed_messages() %}
@@ -69,13 +69,13 @@
       </figure>
     </div>
     <div class="six columns offset-by-three" style="text-align: center; font-size: small">
-      <a href="/" class="button">BACK</a>
+      <a href="/sentimentator" class="button">BACK</a>
     </div>
     <div class="six columns offset-by-three" style="text-align: center">
-      <a href="/logout" class="button">LOG OUT</a>
+      <a href="/sentimentator/logout" class="button">LOG OUT</a>
     </div>
     <div class="six columns offset-by-three" style="text-align: center">
-      <a class="button" href="/test-annotate/en">TEST DATA</a>
+      <a class="button" href="/sentimentator/test-annotate/en">TEST DATA</a>
     </div>
   </div>
 </div>
