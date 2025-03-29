@@ -151,7 +151,7 @@ def annotate(lang):
         score = get_score(user_id)
         if sen is None:
             flash('There are no sentences for the selected language!')
-            return redirect('/sentimentator/language', score=score, username=get_username(user_id)))
+            return redirect('/sentimentator/language', score=score, username=get_username(user_id))
         else:
             username = get_username(user_id)
             if request.method == 'POST':
@@ -190,7 +190,7 @@ def test_annotate(lang):
         score = get_score(user_id)
         if sen is None:
             flash('There are no sentences for the selected language!')
-            return redirect('/sentimentator/language', score=score, username=get_username(user_id)))
+            return redirect('/sentimentator/language', score=score, username=get_username(user_id))
         else:
             username = get_username(user_id)
             if request.method == 'POST':
